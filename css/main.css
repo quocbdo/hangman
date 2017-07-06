@@ -19,17 +19,13 @@ div {
     text-shadow: 1px 1px white;
     font-size: 20px;
     margin: auto;
-    /*padding: 5px;*/
-}
-
-#message {
-    color: #009345;
-    letter-spacing: 3px;
-    font-size: 22px;
-    text-shadow: 1px 1px white;
 }
 
 h2 {
+   color: #009345;
+    letter-spacing: 3px;
+    font-size: 22px;
+    text-shadow: 1px 1px white;
     padding: 2px 0px 5px;
     height: 2px;
 }
@@ -58,17 +54,16 @@ td {
     text-shadow: 1px 1px black;
 }
 
-td:hover {
-    color: #fe0000;
-    background-color: white;
-
-}
-
 .disable-td {
     cursor: default;
     background-color: darkslategray;
     color: black;
     text-shadow: 1px 1px gray;
+}
+
+.unclicked:hover {
+    color: #fe0000;
+    background-color: white;
 }
 
 button {

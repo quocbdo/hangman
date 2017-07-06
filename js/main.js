@@ -1,6 +1,8 @@
 /*----- constants -----*/
+var categories = ["SKATE TRICKS", "PRO SKATERS", "SKATE SPOTS"] 
 
-var skateWord = [
+var skateWord = {
+	"SKATE TRICKS": [
 	"FAKIEOLLIE",
 	"KICKFLIP",
 	"POPSHOVEIT",
@@ -10,8 +12,10 @@ var skateWord = [
 	"SMITHGRIND",
 	"BLUNTSLIDE",
 	"NOCOMPLY",
-	"BONELESS",
+	"BONELESS"
+	], 
 
+	"PRO SKATERS": [
 	"MIKECARROL",
 	"ANDREWREYNOLDS",
 	"GINOIANNUCCI",
@@ -21,8 +25,10 @@ var skateWord = [
 	"HEATHKIRCHART",
 	"DAEWONSONG",
 	"GEOFFROWLEY",
-	"MARKGONZALES",
-	
+	"MARKGONZALES"
+	],
+
+	"SKATE SPOTS": [
 	"HOLLYWOODHIGH",
 	"BROOKLYNBANKS",
 	"THIRDANDARMY",
@@ -33,8 +39,8 @@ var skateWord = [
 	"PALAISDETOKYO",
 	"BRONSONDITCH",
 	"JKWONPLAZA"
-];
-
+	],
+};
 
 /*----- app's state (declaring variables) -----*/
 
@@ -46,19 +52,17 @@ var skateWord = [
 //        of '_' same # LENGTH as secret word)
 // var usedLetter letters
 
-
 /*----- cached element references -----*/
 
 var $letterGuess = $('#guess');
 var $images = $('#hang-img');
 var $winLoseMsg = $('#message');
-// var $wordCat = $('#category');
+var $wordCat = $('.category');
 
 /*----- event listeners -----*/
 
 $('#table').on('click', handleLetterClick);
 $('#reset').on('click', resetGame);
-
 
 /*----- functions -----*/
 
@@ -66,22 +70,17 @@ resetGame();
 
 function resetGame() {
 	triesLeft = 9;
-	secretWord = skateWord[getRandomInt(skateWord.length - 1)];
+	secretCategory = categories[getRandomInt(categories.length -1)];
+	secretWord = skateWord[secretCategory][getRandomInt(skateWord[secretCategory].length - 1)];
 	letterGuess = '_'.repeat(secretWord.length);
 	usedLetter = [];
 	$('td').removeClass('disable-td');
 	render();
 }
 
-// function wordCat() {
-// 	for (var i = 0; i < skateWord.length; i++) {
-// 		if (skateWord =  )
-// }
-
 function handleLetterClick(evt) {
 	if (triesLeft === 0)
-		return;
-		
+		return;	
 	console.log(secretWord);
 	var letter = evt.target.id !== "table" ? evt.target.id : null;
 	if (usedLetter.includes(letter)) {
@@ -105,20 +104,22 @@ function handleLetterClick(evt) {
 	render();
 }
 
+//generate random word
 function getRandomInt(max) {
 	return Math.floor(Math.random()*(max + 1));
 }
-
 
 //display hangman limb images on wrong guess
 function render() {
 	$images.attr('src', 'images/img' + triesLeft + '.svg')
 	$letterGuess.html(letterGuess);
+	$wordCat.html(`Category: ${secretCategory}`)
 	//displays number of tries left
 	$('#tries').html(triesLeft);
 	usedLetter.forEach(function(letter) {
 		// console.log("This is my letter", letter);
 		$('#'+letter).addClass('disable-td');
+		$('#'+letter).removeClass('unclicked');
 	});
 	if (letterGuess === secretWord) {
 		$winLoseMsg.html("You've ESCAPED from security!");

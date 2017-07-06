@@ -1,6 +1,6 @@
-Hangman Game (Skateboard Edition) - Pseudocode
+Skater Hangman - Pseudocode
 
-- Generate a word from wordlist (3 categories: pro skaters, skate tricks, skate spots)
+- Generate a word from wordlist (3 categories: skate tricks, pro skaters, and skate spots)
 
 - Show word length with empty slots to user
 
@@ -26,7 +26,7 @@ Hangman Game (Skateboard Edition) - Pseudocode
 	
 	- else letter is wrong (false), then display a hangman limb (total 8 tries)
 
-- if user makes 8 wrong guesses, then notify user game is over (lose message)
+- if user makes 9 wrong guesses, then notify user game is over (lose message)
 
 - if user guesses correct answer, then notify that the user has won (win message)
 
