@@ -1,6 +1,6 @@
 /*----- constants -----*/
 
-var words = [
+var skateWord = [
 	"FAKIEOLLIE",
 	"KICKFLIP",
 	"POPSHOVEIT",
@@ -41,24 +41,23 @@ var words = [
 // var source of secret words (in the constants section)
 // var wordCat (display word category)
 // var secretWord (holds the randomly chosen word from the words array)
-// var wrongCount (initialize to 0; inc. w/ each wrong guess)
-// var guess (holds player's guess so far, initialize to be a string
+// var triesLeft (initialize to 0; inc. w/ each wrong guess)
+// var letterGuess (holds player's guess so far, initialize to be a string
 //        of '_' same # LENGTH as secret word)
-// var used letters
+// var usedLetter letters
 
 
 /*----- cached element references -----*/
 
-var $guess = $('#guess');
-var $img = $('#hang-img');
-var $msg = $('#msg');
-// var msg = document.getElementById('msg');
+var $letterGuess = $('#guess');
+var $images = $('#hang-img');
+var $winLoseMsg = $('#message');
+// var $wordCat = $('#category');
 
 /*----- event listeners -----*/
 
-$('#table').on('click', handleLetterClick)
+$('#table').on('click', handleLetterClick);
 $('#reset').on('click', resetGame);
-
 
 
 /*----- functions -----*/
@@ -66,36 +65,42 @@ $('#reset').on('click', resetGame);
 resetGame();
 
 function resetGame() {
-	wrongCount = 9;
-	secretWord = words[getRandomInt(words.length - 1)];
-	guess = '_'.repeat(secretWord.length);
-	used = [];
+	triesLeft = 9;
+	secretWord = skateWord[getRandomInt(skateWord.length - 1)];
+	letterGuess = '_'.repeat(secretWord.length);
+	usedLetter = [];
 	$('td').removeClass('disable-td');
 	render();
 }
 
+// function wordCat() {
+// 	for (var i = 0; i < skateWord.length; i++) {
+// 		if (skateWord =  )
+// }
+
 function handleLetterClick(evt) {
-	if (wrongCount === 0) return;
-	
+	if (triesLeft === 0)
+		return;
+		
 	console.log(secretWord);
 	var letter = evt.target.id !== "table" ? evt.target.id : null;
-	if (used.includes(letter)) {
+	if (usedLetter.includes(letter)) {
 		return;
 	} else {
-		used.push(letter);
+		usedLetter.push(letter);
 	}
 	if (secretWord.includes(letter)) {
 		//first letter match
 		var pos = secretWord.indexOf(letter);
 		while (pos >= 0) {
-			guess = guess.split('');
-			guess[pos] = letter;
-			guess = guess.join('');
-				console.log(guess);
+			letterGuess = letterGuess.split('');
+			letterGuess[pos] = letter;
+			letterGuess = letterGuess.join('');
+				console.log(letterGuess);
 			pos = secretWord.indexOf(letter, pos +1);
 		}
-	} else if (wrongCount > 0) {
-		wrongCount--;
+	} else if (triesLeft > 0) {
+		triesLeft--;
 	}
 	render();
 }
@@ -104,20 +109,22 @@ function getRandomInt(max) {
 	return Math.floor(Math.random()*(max + 1));
 }
 
+
 //display hangman limb images on wrong guess
 function render() {
-	$img.attr('src', 'images/img' + wrongCount + '.svg')
-	$guess.html(guess);
-	$('#wrong').html(wrongCount);
-	used.forEach(function(letter) {
+	$images.attr('src', 'images/img' + triesLeft + '.svg')
+	$letterGuess.html(letterGuess);
+	//displays number of tries left
+	$('#tries').html(triesLeft);
+	usedLetter.forEach(function(letter) {
 		// console.log("This is my letter", letter);
 		$('#'+letter).addClass('disable-td');
 	});
-	if (guess === secretWord) {
-		$msg.html("ESCAPED!");
-	} else if (wrongCount === 0) {
-		$msg.html("BUSTED!");
+	if (letterGuess === secretWord) {
+		$winLoseMsg.html("You've ESCAPED from security!");
+	} else if (triesLeft === 0) {
+		$winLoseMsg.html("You've been BUSTED by security!");
 	} else {
-		$msg.html("");
+		$winLoseMsg.html("");
 	}
 }
