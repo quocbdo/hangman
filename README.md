@@ -10,10 +10,15 @@ screenshots:
 ![alt tag](http://i.imgur.com/hCYTMAu.jpg "screenshot3")
 
 <h2>ii. Technologies Used</h2>
-HTML, CSS, Javascript, jQuery, Photoshop, Illustrator
+* HTML
+* CSS
+* Javascript
+* jQuery
+* Photoshop
+* Illustrator
 
 <h2>iii. Getting Started</h2>
 [Skater Hangman](https://quocbdo.github.io/hangman/)
 
 <h2>iv. Next Steps</h2>
-Possible inclusion of sound effects for win/lose scenarios in future update.
+Possible inclusion of sound effects for win/lose scenarios and links/photo reference for correct word guesses to inform players unfamiliar with skateboarding.
