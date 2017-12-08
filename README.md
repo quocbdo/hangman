@@ -13,8 +13,7 @@ The age old game of hangman is given a skateboarding themed spin! The player ass
 * Illustrator
 
 ## Getting Started
-[Skater Hangman]
-(https://quocbdo.github.io/hangman/)
+[Skater Hangman](https://quocbdo.github.io/hangman/)
 
 ## Next Steps
 Possible inclusion of sound effects for win/lose scenarios and links/photo reference for correct word guesses to inform players unfamiliar with skateboarding.
