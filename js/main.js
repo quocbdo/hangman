@@ -3,45 +3,46 @@ var categories = ["SKATE TRICKS", "PRO SKATERS", "SKATE SPOTS"]
 
 var words = {
 	"SKATE TRICKS": [
-	"FAKIEOLLIE",
-	"KICKFLIP",
-	"POPSHOVEIT",
-	"NOLLIEFLIP",
-	"TAILSLIDE",
-	"CROOKEDGRIND",
-	"SMITHGRIND",
-	"BLUNTSLIDE",
-	"NOCOMPLY",
-	"BONELESS"
+		"FAKIEOLLIE",
+		"KICKFLIP",
+		"POPSHOVEIT",
+		"NOLLIEFLIP",
+		"TAILSLIDE",
+		"CROOKEDGRIND",
+		"SMITHGRIND",
+		"BLUNTSLIDE",
+		"NOCOMPLY",
+		"BONELESS"
 	], 
 
 	"PRO SKATERS": [
-	"MIKECARROL",
-	"ANDREWREYNOLDS",
-	"GINOIANNUCCI",
-	"MARCJOHNSON",
-	"ELISSASTEAMER",
-	"LIZZIEARMANTO",
-	"HEATHKIRCHART",
-	"DAEWONSONG",
-	"GEOFFROWLEY",
-	"MARKGONZALES"
+		"MIKECARROL",
+		"ANDREWREYNOLDS",
+		"GINOIANNUCCI",
+		"MARCJOHNSON",
+		"ELISSASTEAMER",
+		"LIZZIEARMANTO",
+		"HEATHKIRCHART",
+		"DAEWONSONG",
+		"GEOFFROWLEY",
+		"MARKGONZALES"
 	],
 
 	"SKATE SPOTS": [
-	"HOLLYWOODHIGH",
-	"BROOKLYNBANKS",
-	"THIRDANDARMY",
-	"EMBARCADERO",
-	"WALLENBERG",
-	"FLUSHINGMEADOWS",
-	"HUBBAHIDEOUT",
-	"PALAISDETOKYO",
-	"BRONSONDITCH",
-	"JKWONPLAZA"
+		"HOLLYWOODHIGH",
+		"BROOKLYNBANKS",
+		"THIRDANDARMY",
+		"EMBARCADERO",
+		"WALLENBERG",
+		"FLUSHINGMEADOWS",
+		"HUBBAHIDEOUT",
+		"PALAISDETOKYO",
+		"BRONSONDITCH",
+		"JKWONPLAZA"
 	],
 };
 
+ 
 /*----- app's state (declaring variables) -----*/
 
 
@@ -62,7 +63,7 @@ $('#reset').on('click', resetGame);
 resetGame();
 
 function resetGame() {
-	triesLeft = 9;
+	var triesLeft = 9;
 	secretCategory = categories[getRandomInt(categories.length -1)];
 	secretWord = words[secretCategory][getRandomInt(words[secretCategory].length - 1)];
 	letterGuess = '_'.repeat(secretWord.length);
@@ -70,6 +71,7 @@ function resetGame() {
 	$('td').removeClass('disable-td');
 	render();
 }
+console.log(triesLeft);
 
 function handleLetterClick(evt) {
 	if (triesLeft === 0)
