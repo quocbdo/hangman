@@ -7,7 +7,7 @@ The age old game of hangman is given a skateboarding themed spin! The player ass
 ## Technologies Used
 * HTML
 * CSS
-* Javascript
+* JavaScript
 * jQuery
 * Photoshop
 * Illustrator
